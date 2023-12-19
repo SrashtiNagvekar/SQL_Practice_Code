@@ -1,0 +1,20 @@
+SELECT 
+    CASE 
+        WHEN CHARINDEX(' ', Employee_Name) > 0 THEN 
+            LEFT(Employee_Name, CHARINDEX(' ', Employee_Name) - 1)
+        ELSE
+            Employee_Name
+    END AS FirstName,
+    CASE 
+        WHEN CHARINDEX(' ', Employee_Name) > 0 THEN 
+            SUBSTRING(Employee_Name, CHARINDEX(' ', Employee_Name) + 1, LEN(Employee_Name))
+        ELSE
+            ''
+    END AS LastName
+FROM EmployeeInfo;
+
+select 
+SUBSTRING(email,1,CHARINDEX('@',email)-1) as [name],
+SUBSTRING(email,CHARINDEX('@',email)+1,LEN(email)-CHARINDEX('.',email)+1) as [company name]
+from
+(select 'abc@evry.com' as email)as Email
